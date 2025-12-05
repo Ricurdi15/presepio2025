@@ -1,38 +1,51 @@
-// server.js - Backend Node.js per salvare punteggi online
+// server.js - Backend Node.js usando un database persistente
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs').promises;
-const path = require('path');
+const mongoose = require('mongoose'); // <--- NUOVO
+// const fs = require('fs').promises; // <-- Rimosso
+// const path = require('path'); // <-- Rimosso
 
 const app = express();
-const PORT = 3000;
-const SCORES_FILE = process.env.SCORES_FILE_PATH || path.join(__dirname, 'scores.json');
+const PORT = process.env.PORT || 3000; // Usa la PORTA fornita da Railway
+// const SCORES_FILE = ... <-- Rimosso
 
+// 1. Connessione al Database (MongoDB)
+const MONGO_URI = process.env.MONGO_URI; // Variabile d'ambiente fornita da Railway/Atlas
+
+if (!MONGO_URI) {
+    console.error("ERRORE: Variabile d'ambiente MONGO_URI non trovata.");
+    process.exit(1);
+}
+
+mongoose.connect(MONGO_URI)
+    .then(() => console.log('✅ Connesso al database MongoDB'))
+    .catch(err => {
+        console.error('❌ Errore di connessione al DB:', err);
+        process.exit(1);
+    });
+
+// 2. Schema per i punteggi
+const scoreSchema = new mongoose.Schema({
+    name: { type: String, required: true, trim: true, maxlength: 20 },
+    score: { type: Number, required: true, min: 0 },
+    date: { type: Date, default: Date.now }
+});
+
+const Score = mongoose.model('Score', scoreSchema); // Modello per interazione DB
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public')); // Serve file statici
-
-// Inizializza file punteggi se non esiste
-async function initScoresFile() {
-    try {
-        await fs.access(SCORES_FILE);
-    } catch {
-        await fs.writeFile(SCORES_FILE, JSON.stringify([]));
-    }
-}
+app.use(express.static('public')); 
 
 // GET - Ottieni classifica
 app.get('/api/scores', async (req, res) => {
     try {
-        const data = await fs.readFile(SCORES_FILE, 'utf8');
-        const scores = JSON.parse(data);
-        
-        // Ordina per punteggio decrescente e prendi top 10
-        const topScores = scores
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 10);
+        // Usa il modello per trovare, ordinare e limitare i dati
+        const topScores = await Score.find()
+            .sort({ score: -1 }) // Ordina per punteggio decrescente
+            .limit(10)
+            .select('name score date -_id'); // Seleziona solo i campi che ti servono
         
         res.json(topScores);
     } catch (error) {
@@ -46,33 +59,20 @@ app.post('/api/scores', async (req, res) => {
     try {
         const { name, score } = req.body;
         
-        // Validazione
-        if (!name || typeof score !== 'number') {
-            return res.status(400).json({ error: 'Dati non validi' });
-        }
-        
-        if (name.length > 20) {
-            return res.status(400).json({ error: 'Nome troppo lungo' });
+        // La validazione rimane, ma Mongoose può aiutare
+        if (!name || typeof score !== 'number' || name.length > 20) {
+             return res.status(400).json({ error: 'Dati non validi o nome troppo lungo' });
         }
 
-        // Leggi punteggi esistenti
-        const data = await fs.readFile(SCORES_FILE, 'utf8');
-        const scores = JSON.parse(data);
-        
-        // Aggiungi nuovo punteggio
-        scores.push({
-            name: name.trim(),
-            score: score,
-            date: new Date().toISOString()
-        });
-        
-        // Salva
-        await fs.writeFile(SCORES_FILE, JSON.stringify(scores, null, 2));
-        
+        // 3. Salva il nuovo punteggio nel database
+        const newScore = new Score({ name, score });
+        await newScore.save();
+
         // Ritorna classifica aggiornata
-        const topScores = scores
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 10);
+        const topScores = await Score.find()
+            .sort({ score: -1 })
+            .limit(10)
+            .select('name score date -_id');
         
         res.json({ 
             success: true, 
@@ -85,10 +85,10 @@ app.post('/api/scores', async (req, res) => {
     }
 });
 
-// DELETE - Reset classifica (admin)
+// DELETE - Reset classifica
 app.delete('/api/scores', async (req, res) => {
     try {
-        await fs.writeFile(SCORES_FILE, JSON.stringify([]));
+        await Score.deleteMany({}); // Cancella tutti i documenti
         res.json({ success: true, message: 'Classifica resettata' });
     } catch (error) {
         console.error('Errore reset:', error);
@@ -97,12 +97,6 @@ app.delete('/api/scores', async (req, res) => {
 });
 
 // Avvia server
-async function startServer() {
-    await initScoresFile();
-    app.listen(PORT, () => {
-        console.log(`🚀 Server avviato su http://localhost:${PORT}`);
-        console.log(`📊 File punteggi: ${SCORES_FILE}`);
-    });
-}
-
-startServer();
+app.listen(PORT, () => {
+    console.log(`🚀 Server avviato sulla porta ${PORT}`);
+});
