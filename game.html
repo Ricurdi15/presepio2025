@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Presepio 2020 II - 2025</title>
+    
+    <!-- Google Fonts - Elegant Christmas Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Christmas Palette */
+            --gold-light: #f4d03f;
+            --gold: #d4af37;
+            --gold-dark: #b8860b;
+            --crimson: #c41e3a;
+            --crimson-dark: #8b0000;
+            --forest: #165b33;
+            --forest-dark: #0d3820;
+            --midnight: #0a1628;
+            --night-sky: #121d33;
+            --snow: #f8f9fa;
+            --cream: #fef9e7;
+            --warm-white: #fff8e7;
+            
+            /* Shadows */
+            --glow-gold: 0 0 30px rgba(212, 175, 55, 0.4);
+            --glow-crimson: 0 0 20px rgba(196, 30, 58, 0.3);
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --shadow-hard: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(160deg, var(--midnight) 0%, var(--night-sky) 50%, #1a2744 100%);
+            touch-action: none;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* ===== SNOWFALL EFFECT ===== */
+        .snowfall {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* ===== START SCREEN ===== */
+        #startScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(196, 30, 58, 0.1) 0%, transparent 50%),
+                linear-gradient(160deg, var(--midnight) 0%, var(--night-sky) 50%, #1a2744 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10000;
+            color: var(--cream);
+            text-align: center;
+            padding: 20px;
+        }
+
+        #startScreen.hidden {
+            display: none;
+        }
+
+        .star-decoration {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: twinkle 2s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 20px rgba(244, 208, 63, 0.8));
+        }
+
+        @keyframes twinkle {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        #startScreen h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+            letter-spacing: 3px;
+        }
+
+        #startScreen .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(18px, 3vw, 24px);
+            margin-bottom: 30px;
+            color: var(--cream);
+            font-style: italic;
+            opacity: 0.9;
+            letter-spacing: 2px;
+        }
+
+        #startScreen .mission {
+            font-size: clamp(14px, 2.5vw, 18px);
+            margin: 20px 0;
+            padding: 25px 35px;
+            background: linear-gradient(135deg, rgba(22, 91, 51, 0.4) 0%, rgba(13, 56, 32, 0.6) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            color: var(--warm-white);
+            max-width: 450px;
+            box-shadow: var(--glow-gold), var(--shadow-soft);
+            backdrop-filter: blur(10px);
+            line-height: 1.6;
+        }
+
+        #startScreen .mission strong {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        #startButton {
+            padding: 20px 60px;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
+            color: white;
+            border: 3px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: var(--glow-crimson), var(--shadow-hard);
+            margin: 25px 0;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #startButton::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        #startButton:hover::before {
+            left: 100%;
+        }
+
+        #startButton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(196, 30, 58, 0.5), 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        #startButton:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== ROTATE MESSAGE ===== */
+        #rotateMessage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 22, 40, 0.98);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+            color: var(--cream);
+        }
+
+        #rotateMessage.show {
+            display: flex;
+        }
+
+        .rotate-icon {
+            font-size: 70px;
+            animation: rotate 2s infinite ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        #rotateMessage h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(90deg); }
+        }
+
+        /* ===== GAME CONTAINER ===== */
+        #gameContainer {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        #gameCanvas {
+            border: 4px solid var(--gold);
+            background: var(--snow);
+            box-shadow: var(--glow-gold), var(--shadow-soft);
+            border-radius: 16px;
+            touch-action: none;
+        }
+
+        body.fullscreen #gameCanvas {
+            border: none;
+            border-radius: 0;
+            width: 100vw !important;
+            height: 100vh !important;
+        }
+
+        /* ===== SCORE BOARD ===== */
+        #scoreBoard {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            font-size: 16px;
+            color: var(--cream);
+            font-weight: 500;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(18, 29, 51, 0.95) 100%);
+            padding: 18px 28px;
+            border-radius: 16px;
+            border: 2px solid var(--gold);
+            z-index: 100;
+            text-align: right;
+            box-shadow: var(--glow-gold), var(--shadow-soft);
+            backdrop-filter: blur(10px);
+        }
+
+        #score {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        #goalProgress {
+            font-size: 13px;
+            margin-top: 6px;
+            color: #90ee90;
+            font-weight: 500;
+        }
+
+        #scoreBoard .record-line {
+            font-size: 13px;
+            margin-top: 8px;
+            opacity: 0.7;
+            padding-top: 8px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* ===== BUTTONS ===== */
+        #exitFullscreen {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.9) 0%, rgba(139, 0, 0, 0.9) 100%);
+            color: white;
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 100;
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        body.fullscreen #exitFullscreen {
+            display: block;
+        }
+
+        #exitFullscreen:hover {
+            transform: scale(1.05);
+        }
+
+        #leaderboardBtn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(18, 29, 51, 0.95) 100%);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: var(--glow-gold), var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+
+        #leaderboardBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+        }
+
+        #leaderboardBtn:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== NATIVITY ENDING SCREEN - DESKTOP OPTIMIZED ===== */
+        #nativityEnding {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: 
+                radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.2) 0%, transparent 60%),
+                linear-gradient(180deg, var(--midnight) 0%, #0d1a2d 50%, var(--night-sky) 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10001;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        #nativityEnding.show {
+            display: flex;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .nativity-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .nativity-header {
+            text-align: center;
+            animation: slideDown 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nativity-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: 3px;
+        }
+
+        .nativity-header p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(16px, 2.5vw, 22px);
+            color: var(--cream);
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .nativity-image-wrapper {
+            position: relative;
+            animation: zoomIn 1s ease-out 0.4s both;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #nativityEnding img {
+            width: 100%;
+            max-width: 1080px;
+            height: auto;
+            max-height: 55vh;
+            object-fit: contain;
+            border: 5px solid var(--gold);
+            border-radius: 20px;
+            box-shadow: 
+                0 0 60px rgba(212, 175, 55, 0.4),
+                0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            border-radius: 30px;
+            z-index: -1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .nativity-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            animation: slideUp 0.8s ease-out 0.6s both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, rgba(22, 91, 51, 0.5) 0%, rgba(13, 56, 32, 0.7) 100%);
+            padding: 20px 40px;
+            border-radius: 16px;
+            border: 3px solid var(--gold);
+            text-align: center;
+            box-shadow: var(--glow-gold), var(--shadow-soft);
+            backdrop-filter: blur(10px);
+        }
+
+        .score-display .label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            color: var(--cream);
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .score-display .value {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .save-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 280px;
+        }
+
+        #nativityNameInput {
+            padding: 14px 20px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            border: 3px solid var(--gold);
+            border-radius: 12px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--midnight);
+            transition: all 0.3s ease;
+        }
+
+        #nativityNameInput:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        #nativityNameInput::placeholder {
+            color: #888;
+        }
+
+        #nativitySubmitBtn {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-dark) 100%);
+            border: 3px solid var(--gold);
+            padding: 14px 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-soft);
+        }
+
+        #nativitySubmitBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(22, 91, 51, 0.5);
+        }
+
+        #nativitySubmitBtn:active {
+            transform: scale(0.97);
+        }
+
+        #nativitySubmitBtn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #nativityRestartBtn {
+            padding: 16px 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
+            color: white;
+            border: 3px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            box-shadow: var(--glow-crimson), var(--shadow-hard);
+            transition: all 0.3s ease;
+        }
+
+        #nativityRestartBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(196, 30, 58, 0.5);
+        }
+
+        #nativityRestartBtn:active {
+            transform: scale(0.97);
+        }
+
+        /* Desktop - larger image and horizontal layout */
+        @media (min-width: 900px) {
+            #nativityEnding img {
+                max-height: 60vh;
+            }
+
+            .nativity-content {
+                gap: 30px;
+            }
+
+            .score-display {
+                padding: 25px 50px;
+            }
+        }
+
+        /* Large desktop */
+        @media (min-width: 1200px) {
+            #nativityEnding img {
+                max-height: 65vh;
+            }
+        }
+
+        /* Mobile Portrait */
+        @media (max-width: 768px) and (orientation: portrait) {
+            #nativityEnding {
+                padding: 15px;
+            }
+
+            .nativity-container {
+                gap: 15px;
+            }
+
+            #nativityEnding img {
+                max-height: 40vh;
+                border-width: 3px;
+                border-radius: 12px;
+            }
+
+            .score-display {
+                padding: 15px 30px;
+            }
+
+            .save-section {
+                min-width: 100%;
+                max-width: 350px;
+            }
+
+            #nativityRestartBtn {
+                padding: 14px 40px;
+                font-size: 16px;
+            }
+        }
+
+        /* Mobile Landscape */
+        @media (max-width: 900px) and (orientation: landscape) {
+            #nativityEnding {
+                padding: 10px 20px;
+            }
+
+            .nativity-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .nativity-header {
+                width: 100%;
+                margin-bottom: 0;
+            }
+
+            .nativity-header h2 {
+                font-size: 24px;
+            }
+
+            .nativity-header p {
+                font-size: 14px;
+            }
+
+            .nativity-image-wrapper {
+                flex: 1;
+                min-width: 50%;
+            }
+
+            #nativityEnding img {
+                max-height: 70vh;
+                border-width: 3px;
+            }
+
+            .nativity-content {
+                flex: 0 0 40%;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .score-display {
+                padding: 12px 25px;
+            }
+
+            .score-display .value {
+                font-size: 28px;
+            }
+
+            .save-section {
+                min-width: auto;
+                width: 100%;
+            }
+
+            #nativityNameInput,
+            #nativitySubmitBtn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            #nativityRestartBtn {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+        }
+
+        /* ===== GAME OVER SCREEN ===== */
+        #gameOver {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.98) 0%, rgba(18, 29, 51, 0.98) 100%);
+            color: var(--cream);
+            padding: 40px;
+            border-radius: 24px;
+            border: 3px solid var(--gold);
+            text-align: center;
+            display: none;
+            z-index: 1000;
+            max-width: 90%;
+            width: 420px;
+            box-shadow: var(--glow-gold), 0 20px 60px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+        }
+
+        #gameOver h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--crimson);
+            letter-spacing: 2px;
+        }
+
+        #gameOver p {
+            font-size: 20px;
+            margin: 12px 0;
+        }
+
+        #gameOver .goal-message {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            color: #ff8a8a;
+            margin: 18px 0;
+            font-style: italic;
+        }
+
+        #gameOver #newRecord {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 18px;
+            animation: twinkle 1s ease-in-out infinite alternate;
+        }
+
+        #nameInput {
+            margin: 20px 0;
+            padding: 14px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            border: 3px solid var(--gold);
+            border-radius: 12px;
+            width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        #nameInput:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn {
+            margin: 10px 0;
+            padding: 16px 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            border: 3px solid var(--gold);
+            border-radius: 14px;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        #restartBtn {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-dark) 100%);
+        }
+
+        #restartBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(22, 91, 51, 0.5);
+        }
+
+        #submitScoreBtn {
+            background: linear-gradient(135deg, #4169E1 0%, #000080 100%);
+        }
+
+        #submitScoreBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(65, 105, 225, 0.5);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== LEADERBOARD MODAL ===== */
+        #leaderboardModal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+            padding: 30px;
+            border-radius: 24px;
+            border: 4px solid var(--gold);
+            display: none;
+            z-index: 2000;
+            max-width: 90%;
+            width: 420px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--glow-gold), 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        #leaderboardModal h2 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            color: var(--crimson-dark);
+            margin-bottom: 25px;
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
+
+        #closeLeaderboard {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--crimson);
+            transition: transform 0.3s;
+        }
+
+        #closeLeaderboard:hover {
+            transform: scale(1.2);
+        }
+
+        #leaderboardList {
+            list-style: none;
+            padding: 0;
+        }
+
+        .leaderboard-item {
+            padding: 14px 18px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .leaderboard-item:hover {
+            transform: translateX(5px);
+        }
+
+        .leaderboard-item.top1 {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+            font-weight: bold;
+            border-color: #FFD700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .leaderboard-item.top2 {
+            background: linear-gradient(135deg, #C0C0C0, #A0A0A0);
+            color: white;
+            border-color: #C0C0C0;
+        }
+
+        .leaderboard-item.top3 {
+            background: linear-gradient(135deg, #CD7F32, #8B4513);
+            color: white;
+            border-color: #CD7F32;
+        }
+
+        .rank {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        .player-name {
+            font-family: 'Quicksand', sans-serif;
+            flex: 1;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .player-score {
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* ===== TOUCH RIPPLE ===== */
+        .touch-ripple {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(212, 175, 55, 0) 70%);
+            pointer-events: none;
+            animation: ripple 0.6s ease-out;
+            z-index: 50;
+        }
+
+        @keyframes ripple {
+            from { width: 0; height: 0; opacity: 1; }
+            to { width: 200px; height: 200px; opacity: 0; }
+        }
+
+        /* ===== ORIENTATION WARNING ===== */
+        @media (orientation: portrait) and (max-width: 768px) {
+            #rotateMessage.mobile-portrait {
+                display: flex !important;
+            }
+        }
+
+        /* ===== LOADING STATE ===== */
+        #loading {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Snowfall Effect -->
+    <div class="snowfall" id="snowfall"></div>
+
+    <!-- Start Screen -->
+    <div id="startScreen">
+        <div class="star-decoration">⭐</div>
+        <h1>Presepio 2020 II</h1>
+        <p class="subtitle">Un'avventura verso la Natività</p>
+        <div class="mission">
+            🎄 <strong>LA TUA MISSIONE</strong> 🎄<br><br>
+            Raggiungi <strong>8500 passi</strong><br>
+            per arrivare al Presepio!
+        </div>
+        <button id="startButton">✨ INIZIA IL VIAGGIO ✨</button>
+    </div>
+
+    <!-- Rotate Message -->
+    <div id="rotateMessage">
+        <div class="rotate-icon">📱➡️</div>
+        <h2>Ruota il dispositivo</h2>
+        <p>Il gioco funziona meglio in orizzontale</p>
+    </div>
+
+    <!-- Game Container -->
+    <div id="gameContainer">
+        <button id="exitFullscreen">✕ Esci</button>
+        <button id="leaderboardBtn" title="Classifica">🏆</button>
+
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+
+        <div id="scoreBoard">
+            <div>Distanza: <span id="score">0</span></div>
+            <div id="goalProgress">Meta: 8500</div>
+            <div class="record-line">
+                Record: <span id="highScoreValue">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nativity Ending Screen - Desktop Optimized -->
+    <div id="nativityEnding">
+        <div class="nativity-container">
+            <div class="nativity-header">
+                <h2>🌟 SEI ARRIVATO AL PRESEPIO! 🌟</h2>
+            </div>
+            
+            <div class="nativity-image-wrapper">
+                <div class="image-glow"></div>
+                <img src="img/presepio.png" alt="Presepio">
+            </div>
+            
+            <div class="nativity-content">
+                <div class="score-display">
+                    <div class="label">Distanza percorsa</div>
+                    <div class="value"><span id="nativityFinalScore">0</span></div>
+                </div>
+
+                <div class="save-section">
+                    <input type="text" id="nativityNameInput" placeholder="Il tuo nome" maxlength="20">
+                    <button id="nativitySubmitBtn">SALVA NELLA CLASSIFICA</button>
+                </div>
+
+                <button id="nativityRestartBtn">🔄 RIGIOCA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOver">
+        <h2>VIAGGIO INTERROTTO</h2>
+        <p>Distanza: <span id="finalScore">0</span></p>
+        <p class="goal-message" id="goalMessage"></p>
+        <p id="newRecord" style="display: none;">
+            ⭐ NUOVO RECORD! ⭐
+        </p>
+
+        <div id="submitScoreSection">
+            <input type="text" id="nameInput" placeholder="Il tuo nome" maxlength="20">
+            <button id="submitScoreBtn" class="btn">SALVA CLASSIFICA</button>
+        </div>
+
+        <button id="restartBtn" class="btn">🔄 RIPROVA VIAGGIO</button>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal">
+        <button id="closeLeaderboard">×</button>
+        <h2>🏆 CLASSIFICA RE MAGI</h2>
+        <div id="loading">
+            Caricamento...
+        </div>
+        <ul id="leaderboardList"></ul>
+    </div>
+
+    <script>
+        // Create snowfall effect
+        function createSnowfall() {
+            const snowfall = document.getElementById('snowfall');
+            const snowflakes = ['❄', '❅', '❆', '•'];
+            
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.fontSize = (Math.random() * 10 + 8) + 'px';
+                snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+                snowfall.appendChild(snowflake);
+            }
+        }
+        createSnowfall();
+
+        const SPRITE_CONFIG = {
+            player: {
+                sprites: ['img/player01.png', 'img/player02.png', 'img/player025.png', 'img/player03.png', 'img/player04.png', 'img/player025.png'],
+                useColor: false,
+                color: '#daa520',
+                width: 70,
+                height: 70,
+                animationSpeed: 11,
+                hitbox: { width: 30, height: 50, offsetX: 30, offsetY: 10 }
+            },
+            obstacles: [
+                { sprite: 'img/pecora.png', useColor: false, color: '#fff', width: 50, height: 50, heightOffset: 0 },
+                { sprite: 'img/cammello.png', useColor: false, color: '#8b4513', width: 95, height: 95, heightOffset: 0 },
+                { sprite: 'img/uccello.png', useColor: false, color: '#4169e1', width: 50, height: 40, heightOffset: 40 },
+                { sprite: 'img/uccello.png', useColor: false, color: '#4169e1', width: 50, height: 40, heightOffset: 80 },
+                { sprite: 'img/uccello.png', useColor: false, color: '#4169e1', width: 50, height: 40, heightOffset: 130 },
+                { sprite: 'img/pastore.png', useColor: false, color: '#4169e1', width: 50, height: 70, heightOffset: 0 },
+                { sprite: 'img/pastore1.png', useColor: false, color: '#4169e1', width: 50, height: 70, heightOffset: 0 },
+                { sprite: 'img/cactus.png', useColor: false, color: '#4169e1', width: 60, height: 110, heightOffset: 0 },
+            ],
+            ground: { useColor: true, color: '#d2b48c' },
+            background: { sprite: 'img/background.png', useColor: false, color: '#1a1a2e' }
+        };
+
+        const GOAL_SCORE = 8500;
+        const API_URL = 'http://localhost:3000/api';
+
+        const spriteLoader = {
+            images: {},
+            load(config) {
+                const promises = [];
+                if (config.player.sprites) config.player.sprites.forEach((src, i) => promises.push(this.loadImage(`player${i}`, src)));
+                config.obstacles.forEach((obs, i) => { if (obs.sprite) promises.push(this.loadImage(`obstacle${i}`, obs.sprite)); });
+                if (config.ground.sprite) promises.push(this.loadImage('ground', config.ground.sprite));
+                if (config.background.sprite) promises.push(this.loadImage('background', config.background.sprite));
+                return Promise.all(promises);
+            },
+            loadImage(key, src) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => { this.images[key] = img; resolve(); };
+                    img.onerror = () => { console.warn(`Impossibile caricare: ${src}`); resolve(); };
+                    img.src = src;
+                });
+            },
+            get(key) { return this.images[key]; }
+        };
+
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        let isFullscreen = false, gameRunning = false, gameStarted = false, score = 0;
+        let highScore = localStorage.getItem('magiHighScore') || 0;
+        let gameSpeed = 4, gravity = 0.27, goalReached = false;
+
+        const player = {
+            x: 100, y: 0, width: SPRITE_CONFIG.player.width, height: SPRITE_CONFIG.player.height,
+            dy: 0, jumpPower: -9, grounded: false, currentFrame: 0, frameCounter: 0,
+            totalFrames: SPRITE_CONFIG.player.sprites.length || 1,
+            draw() {
+                if (SPRITE_CONFIG.player.sprites.length > 0 && spriteLoader.get(`player${this.currentFrame}`)) {
+                    ctx.drawImage(spriteLoader.get(`player${this.currentFrame}`), this.x, this.y, this.width, this.height);
+                } else {
+                    ctx.fillStyle = SPRITE_CONFIG.player.color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+            },
+            updateAnimation() {
+                if (this.grounded && this.totalFrames > 1) {
+                    this.frameCounter++;
+                    if (this.frameCounter >= SPRITE_CONFIG.player.animationSpeed) {
+                        this.frameCounter = 0;
+                        this.currentFrame = (this.currentFrame + 1) % this.totalFrames;
+                    }
+                }
+            }
+        };
+
+        const ground = {
+            y: canvas.height - 50, height: 50,
+            draw() {
+                ctx.fillStyle = SPRITE_CONFIG.ground.color;
+                ctx.fillRect(0, this.y, canvas.width, this.height);
+            }
+        };
+
+        player.y = ground.y - player.height;
+
+        let obstacles = [], obstacleTimer = 0, obstacleInterval = 150;
+
+        document.getElementById('highScoreValue').textContent = highScore;
+
+        async function enterFullscreen() {
+            try {
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) await elem.requestFullscreen();
+                else if (elem.webkitRequestFullscreen) await elem.webkitRequestFullscreen();
+                document.body.classList.add('fullscreen');
+                isFullscreen = true;
+                if (screen.orientation && screen.orientation.lock) {
+                    try { await screen.orientation.lock('landscape'); } catch (err) { }
+                }
+                resizeCanvas();
+            } catch (err) { resizeCanvas(); }
+        }
+
+        function resizeCanvas() {
+            if (isFullscreen) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            } else {
+                if (window.innerWidth >= 768) {
+                    canvas.width = 1080;
+                    canvas.height = 720;
+                } else {
+                    const aspectRatio = 1080 / 720;
+                    const maxWidth = window.innerWidth - 20;
+                    const maxHeight = window.innerHeight * 0.65;
+
+                    if (maxWidth / aspectRatio <= maxHeight) {
+                        canvas.width = 1080;
+                        canvas.height = 720;
+                        canvas.style.width = maxWidth + 'px';
+                        canvas.style.height = (maxWidth / aspectRatio) + 'px';
+                    } else {
+                        canvas.width = 1080;
+                        canvas.height = 720;
+                        canvas.style.width = (maxHeight * aspectRatio) + 'px';
+                        canvas.style.height = maxHeight + 'px';
+                    }
+                }
+            }
+            ground.y = canvas.height - 50;
+            player.y = ground.y - player.height;
+        }
+
+        function checkOrientation() {
+            const rotateMsg = document.getElementById('rotateMessage');
+            if (isMobile && window.innerWidth < 768 && window.innerHeight > window.innerWidth) {
+                rotateMsg.classList.add('show', 'mobile-portrait');
+            } else {
+                rotateMsg.classList.remove('show', 'mobile-portrait');
+            }
+        }
+
+        function createRipple(x, y) {
+            const ripple = document.createElement('div');
+            ripple.className = 'touch-ripple';
+            ripple.style.left = (x - 100) + 'px';
+            ripple.style.top = (y - 100) + 'px';
+            document.body.appendChild(ripple);
+            setTimeout(() => document.body.removeChild(ripple), 600);
+        }
+
+        async function loadLeaderboard() {
+            try {
+                const response = await fetch(`${API_URL}/scores`);
+                const scores = await response.json();
+                displayLeaderboard(scores);
+            } catch (error) {
+                document.getElementById('loading').textContent = 'Impossibile caricare la classifica';
+            }
+        }
+
+        function displayLeaderboard(scores) {
+            const list = document.getElementById('leaderboardList');
+            const loading = document.getElementById('loading');
+            loading.style.display = 'none';
+            list.innerHTML = '';
+            if (scores.length === 0) {
+                list.innerHTML = '<li style="text-align: center; padding: 20px; color: #666; font-style: italic;">Nessun punteggio ancora!</li>';
+                return;
+            }
+            scores.forEach((entry, index) => {
+                const li = document.createElement('li');
+                li.className = 'leaderboard-item';
+                if (index === 0) li.classList.add('top1');
+                else if (index === 1) li.classList.add('top2');
+                else if (index === 2) li.classList.add('top3');
+                const rank = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`;
+                li.innerHTML = `<span class="rank">${rank}</span><span class="player-name">${entry.name}</span><span class="player-score">${entry.score}</span>`;
+                list.appendChild(li);
+            });
+        }
+
+        async function submitScore() {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.trim();
+            if (!name) { alert('Inserisci il tuo nome!'); return; }
+            const submitBtn = document.getElementById('submitScoreBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Salvataggio...';
+            try {
+                const response = await fetch(`${API_URL}/scores`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, score })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    submitBtn.textContent = '✓ SALVATO!';
+                    submitBtn.style.background = 'var(--forest)';
+                    nameInput.disabled = true;
+                    displayLeaderboard(data.leaderboard);
+                } else throw new Error();
+            } catch (error) {
+                alert('Server non disponibile');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'RIPROVA';
+            }
+        }
+
+        document.getElementById('startButton').addEventListener('click', async () => {
+            document.getElementById('startScreen').classList.add('hidden');
+            await spriteLoader.load(SPRITE_CONFIG);
+            if (isMobile) await enterFullscreen();
+            setTimeout(() => { gameStarted = true; startGame(); }, 300);
+        });
+
+        document.getElementById('leaderboardBtn').addEventListener('click', () => {
+            document.getElementById('leaderboardModal').style.display = 'block';
+            loadLeaderboard();
+        });
+
+        document.getElementById('closeLeaderboard').addEventListener('click', () => {
+            document.getElementById('leaderboardModal').style.display = 'none';
+        });
+
+        document.getElementById('restartBtn').addEventListener('click', () => {
+            document.getElementById('gameOver').style.display = 'none';
+            startGame();
+        });
+
+        document.getElementById('nativityRestartBtn').addEventListener('click', () => {
+            document.getElementById('nativityEnding').classList.remove('show');
+            startGame();
+        });
+
+        document.getElementById('nativitySubmitBtn').addEventListener('click', async () => {
+            const nameInput = document.getElementById('nativityNameInput');
+            const name = nameInput.value.trim();
+            if (!name) { alert('Inserisci il tuo nome!'); return; }
+            const submitBtn = document.getElementById('nativitySubmitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Salvataggio...';
+            try {
+                const response = await fetch(`${API_URL}/scores`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, score })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    submitBtn.textContent = '✓ SALVATO!';
+                    submitBtn.style.background = 'var(--forest)';
+                    nameInput.disabled = true;
+                } else throw new Error();
+            } catch (error) {
+                alert('Server non disponibile');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'RIPROVA';
+            }
+        });
+
+        document.getElementById('submitScoreBtn').addEventListener('click', submitScore);
+
+        function handleInput(e) {
+            if (e) {
+                e.preventDefault();
+                let x, y;
+                if (e.touches && e.touches[0]) {
+                    x = e.touches[0].clientX;
+                    y = e.touches[0].clientY;
+                } else {
+                    x = e.clientX;
+                    y = e.clientY;
+                }
+                createRipple(x, y);
+            }
+            if (gameRunning && player.grounded) jump();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                handleInput();
+            }
+        });
+
+        canvas.addEventListener('touchstart', handleInput, { passive: false });
+        canvas.addEventListener('click', handleInput);
+
+        function startGame() {
+            gameRunning = true;
+            score = 0;
+            gameSpeed = 3;
+            obstacles = [];
+            obstacleTimer = 0;
+            player.y = ground.y - player.height;
+            player.dy = 0;
+            player.currentFrame = 0;
+            player.frameCounter = 0;
+            goalReached = false;
+            const submitBtn = document.getElementById('submitScoreBtn');
+            const nameInput = document.getElementById('nameInput');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'SALVA CLASSIFICA';
+            submitBtn.style.background = 'linear-gradient(135deg, #4169E1 0%, #000080 100%)';
+            nameInput.disabled = false;
+            nameInput.value = '';
+        }
+
+        function jump() {
+            if (player.grounded) {
+                player.dy = player.jumpPower;
+                player.grounded = false;
+                if (navigator.vibrate) navigator.vibrate(50);
+            }
+        }
+
+        function updatePlayer() {
+            player.dy += gravity;
+            player.y += player.dy;
+            if (player.y + player.height >= ground.y) {
+                player.y = ground.y - player.height;
+                player.dy = 0;
+                player.grounded = true;
+            }
+            player.updateAnimation();
+        }
+
+        function spawnObstacle() {
+            const obstacleConfig = SPRITE_CONFIG.obstacles[Math.floor(Math.random() * SPRITE_CONFIG.obstacles.length)];
+            obstacles.push({
+                x: canvas.width,
+                y: ground.y - obstacleConfig.height - (obstacleConfig.heightOffset || 0),
+                width: obstacleConfig.width,
+                height: obstacleConfig.height,
+                sprite: obstacleConfig.sprite,
+                color: obstacleConfig.color,
+                useColor: obstacleConfig.useColor
+            });
+        }
+
+        function updateObstacles() {
+            obstacleTimer++;
+            if (obstacleTimer > obstacleInterval) {
+                spawnObstacle();
+                obstacleTimer = 0;
+                const baseInterval = Math.max(50, 150 - Math.floor(score / 150));
+                const randomness = baseInterval * 0.3;
+                obstacleInterval = baseInterval + (Math.random() * randomness * 2 - randomness);
+            }
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                obstacles[i].x -= gameSpeed;
+                if (obstacles[i].x + obstacles[i].width < 0) {
+                    obstacles.splice(i, 1);
+                    score += 10;
+                }
+            }
+            if (score % 100 === 0 && score > 0) gameSpeed += 0.1;
+        }
+
+        function checkCollisions() {
+            const playerHitbox = {
+                x: player.x + (SPRITE_CONFIG.player.hitbox?.offsetX || 0),
+                y: player.y + (SPRITE_CONFIG.player.hitbox?.offsetY || 0),
+                width: SPRITE_CONFIG.player.hitbox?.width || player.width,
+                height: SPRITE_CONFIG.player.hitbox?.height || player.height
+            };
+            for (let obstacle of obstacles) {
+                if (playerHitbox.x < obstacle.x + obstacle.width &&
+                    playerHitbox.x + playerHitbox.width > obstacle.x &&
+                    playerHitbox.y < obstacle.y + obstacle.height &&
+                    playerHitbox.y + playerHitbox.height > obstacle.y) {
+                    gameOver();
+                }
+            }
+        }
+
+        function checkGoal() {
+            // Goal check handled in gameOver()
+        }
+
+        function showNativityEnding() {
+            document.getElementById('nativityFinalScore').textContent = score;
+
+            const submitBtn = document.getElementById('nativitySubmitBtn');
+            const nameInput = document.getElementById('nativityNameInput');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'SALVA NELLA CLASSIFICA';
+            submitBtn.style.background = 'linear-gradient(135deg, var(--forest) 0%, var(--forest-dark) 100%)';
+            nameInput.disabled = false;
+            nameInput.value = '';
+
+            document.getElementById('nativityEnding').classList.add('show');
+            if (navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 100]);
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('magiHighScore', highScore);
+                document.getElementById('highScoreValue').textContent = highScore;
+            }
+
+            if (score >= GOAL_SCORE) {
+                showNativityEnding();
+            } else {
+                const goalMessage = document.getElementById('goalMessage');
+                goalMessage.textContent = `Mancavano ${GOAL_SCORE - score} passi per il Presepio`;
+                goalMessage.style.color = '#ff8a8a';
+
+                if (score > highScore) {
+                    document.getElementById('newRecord').style.display = 'block';
+                } else {
+                    document.getElementById('newRecord').style.display = 'none';
+                }
+
+                document.getElementById('finalScore').textContent = score;
+                document.getElementById('gameOver').style.display = 'block';
+            }
+        }
+
+        function drawObstacles() {
+            for (let obstacle of obstacles) {
+                const obstacleIndex = SPRITE_CONFIG.obstacles.findIndex(o => o.sprite === obstacle.sprite);
+                const spriteKey = `obstacle${obstacleIndex}`;
+                if (!obstacle.useColor && spriteLoader.get(spriteKey)) {
+                    ctx.drawImage(spriteLoader.get(spriteKey), obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+                } else {
+                    ctx.fillStyle = obstacle.color;
+                    ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+                }
+            }
+        }
+
+        function drawStars() {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            const stars = [
+                { x: canvas.width * 0.1, y: canvas.height * 0.1 },
+                { x: canvas.width * 0.3, y: canvas.height * 0.15 },
+                { x: canvas.width * 0.5, y: canvas.height * 0.08 },
+                { x: canvas.width * 0.7, y: canvas.height * 0.12 },
+                { x: canvas.width * 0.9, y: canvas.height * 0.1 }
+            ];
+            for (let star of stars) {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function update() {
+            if (gameRunning) {
+                updatePlayer();
+                updateObstacles();
+                checkCollisions();
+                checkGoal();
+                score++;
+                document.getElementById('score').textContent = score;
+                const remaining = Math.max(0, GOAL_SCORE - score);
+                document.getElementById('goalProgress').textContent = remaining > 0 ? `Meta: ${remaining} passi` : '✨ META RAGGIUNTA! ✨';
+            }
+        }
+
+        function draw() {
+            if (SPRITE_CONFIG.background.sprite && spriteLoader.get('background')) {
+                ctx.drawImage(spriteLoader.get('background'), 0, 0, canvas.width, canvas.height);
+            } else {
+                ctx.fillStyle = SPRITE_CONFIG.background.color;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            drawStars();
+            ground.draw();
+            drawObstacles();
+            player.draw();
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('resize', () => { resizeCanvas(); checkOrientation(); });
+        window.addEventListener('orientationchange', () => setTimeout(() => { resizeCanvas(); checkOrientation(); }, 100));
+
+        resizeCanvas();
+        checkOrientation();
+        gameLoop();
+    </script>
+</body>
+
+</html>
