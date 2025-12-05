@@ -8,6 +8,7 @@ const app = express();
 const PORT = 3000;
 const SCORES_FILE = process.env.SCORES_FILE_PATH || path.join(__dirname, 'scores.json');
 
+
 // Middleware
 app.use(cors());
 app.use(express.json());
