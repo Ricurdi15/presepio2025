@@ -7,12 +7,14 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Presepio 2020 II - 2025</title>
-    
+
     <!-- Google Fonts - Elegant Christmas Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             /* Christmas Palette */
@@ -28,7 +30,7 @@
             --snow: #f8f9fa;
             --cream: #fef9e7;
             --warm-white: #fff8e7;
-            
+
             /* Shadows */
             --glow-gold: 0 0 30px rgba(212, 175, 55, 0.4);
             --glow-crimson: 0 0 20px rgba(196, 30, 58, 0.3);
@@ -79,6 +81,7 @@
             0% {
                 transform: translateY(-10px) rotate(0deg);
             }
+
             100% {
                 transform: translateY(100vh) rotate(360deg);
             }
@@ -91,7 +94,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: 
+            background:
                 radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
                 radial-gradient(ellipse at 70% 80%, rgba(196, 30, 58, 0.1) 0%, transparent 50%),
                 linear-gradient(160deg, var(--midnight) 0%, var(--night-sky) 50%, #1a2744 100%);
@@ -117,8 +120,15 @@
         }
 
         @keyframes twinkle {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
         }
 
         #startScreen h1 {
@@ -239,8 +249,15 @@
         }
 
         @keyframes rotate {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(90deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(90deg);
+            }
         }
 
         /* ===== GAME CONTAINER ===== */
@@ -369,7 +386,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: 
+            background:
                 radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.2) 0%, transparent 60%),
                 linear-gradient(180deg, var(--midnight) 0%, #0d1a2d 50%, var(--night-sky) 100%);
             display: none;
@@ -386,8 +403,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .nativity-container {
@@ -405,8 +427,15 @@
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .nativity-header h2 {
@@ -435,8 +464,15 @@
         }
 
         @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         #nativityEnding img {
@@ -447,7 +483,7 @@
             object-fit: contain;
             border: 5px solid var(--gold);
             border-radius: 20px;
-            box-shadow: 
+            box-shadow:
                 0 0 60px rgba(212, 175, 55, 0.4),
                 0 20px 60px rgba(0, 0, 0, 0.5);
         }
@@ -465,8 +501,17 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.02); }
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
         }
 
         .nativity-content {
@@ -480,8 +525,15 @@
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .score-display {
@@ -937,8 +989,17 @@
         }
 
         @keyframes ripple {
-            from { width: 0; height: 0; opacity: 1; }
-            to { width: 200px; height: 200px; opacity: 0; }
+            from {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            to {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
         }
 
         /* ===== ORIENTATION WARNING ===== */
@@ -968,7 +1029,7 @@
         <p class="subtitle">Un'avventura verso la Natività</p>
         <div class="mission">
             🎄 <strong>LA TUA MISSIONE</strong> 🎄<br><br>
-            Raggiungi <strong>8500 passi</strong><br>
+            Raggiungi <strong>6500 passi</strong><br>
             per arrivare al Presepio!
         </div>
         <button id="startButton">✨ INIZIA IL VIAGGIO ✨</button>
@@ -990,7 +1051,7 @@
 
         <div id="scoreBoard">
             <div>Distanza: <span id="score">0</span></div>
-            <div id="goalProgress">Meta: 8500</div>
+            <div id="goalProgress">Meta: 6500</div>
             <div class="record-line">
                 Record: <span id="highScoreValue">0</span>
             </div>
@@ -1003,12 +1064,12 @@
             <div class="nativity-header">
                 <h2>🌟 SEI ARRIVATO AL PRESEPIO! 🌟</h2>
             </div>
-            
+
             <div class="nativity-image-wrapper">
                 <div class="image-glow"></div>
                 <img src="img/presepio.png" alt="Presepio">
             </div>
-            
+
             <div class="nativity-content">
                 <div class="score-display">
                     <div class="label">Distanza percorsa</div>
@@ -1057,7 +1118,7 @@
         function createSnowfall() {
             const snowfall = document.getElementById('snowfall');
             const snowflakes = ['❄', '❅', '❆', '•'];
-            
+
             for (let i = 0; i < 50; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.className = 'snowflake';
@@ -1079,7 +1140,7 @@
                 color: '#daa520',
                 width: 70,
                 height: 70,
-                animationSpeed: 11,
+                animationSpeed:6,
                 hitbox: { width: 30, height: 50, offsetX: 30, offsetY: 10 }
             },
             obstacles: [
@@ -1096,7 +1157,7 @@
             background: { sprite: 'img/background.png', useColor: false, color: '#1a1a2e' }
         };
 
-        const GOAL_SCORE = 8500;
+        const GOAL_SCORE = 6500;
         const API_URL = window.location.origin + '/api';
 
         const spriteLoader = {
@@ -1126,11 +1187,11 @@
 
         let isFullscreen = false, gameRunning = false, gameStarted = false, score = 0;
         let highScore = localStorage.getItem('magiHighScore') || 0;
-        let gameSpeed = 4, gravity = 0.27, goalReached = false;
+        let gameSpeed = 10, gravity = 0.87, goalReached = false;
 
         const player = {
             x: 100, y: 0, width: SPRITE_CONFIG.player.width, height: SPRITE_CONFIG.player.height,
-            dy: 0, jumpPower: -9, grounded: false, currentFrame: 0, frameCounter: 0,
+            dy: 0, jumpPower: -16, grounded: false, currentFrame: 0, frameCounter: 0,
             totalFrames: SPRITE_CONFIG.player.sprites.length || 1,
             draw() {
                 if (SPRITE_CONFIG.player.sprites.length > 0 && spriteLoader.get(`player${this.currentFrame}`)) {
@@ -1140,9 +1201,9 @@
                     ctx.fillRect(this.x, this.y, this.width, this.height);
                 }
             },
-            updateAnimation() {
+            updateAnimation(correction) {
                 if (this.grounded && this.totalFrames > 1) {
-                    this.frameCounter++;
+                    this.frameCounter += correction; // Incrementa basandosi sul tempo
                     if (this.frameCounter >= SPRITE_CONFIG.player.animationSpeed) {
                         this.frameCounter = 0;
                         this.currentFrame = (this.currentFrame + 1) % this.totalFrames;
@@ -1368,9 +1429,10 @@
         function startGame() {
             gameRunning = true;
             score = 0;
-            gameSpeed = 3;
+            gameSpeed = 10; // Puoi rimettere 4 o aggiustarlo se sembra troppo veloce
             obstacles = [];
             obstacleTimer = 0;
+            lastTime = 0; // <--- AGGIUNGI QUESTO RESET
             player.y = ground.y - player.height;
             player.dy = 0;
             player.currentFrame = 0;
@@ -1393,15 +1455,21 @@
             }
         }
 
-        function updatePlayer() {
-            player.dy += gravity;
-            player.y += player.dy;
+        function updatePlayer(correction) {
+            // Applica gravità scalata dal tempo
+            player.dy += gravity * correction;
+
+            // Applica movimento verticale scalato dal tempo
+            player.y += player.dy * correction;
+
             if (player.y + player.height >= ground.y) {
                 player.y = ground.y - player.height;
                 player.dy = 0;
                 player.grounded = true;
             }
-            player.updateAnimation();
+
+            // Anche l'animazione deve seguire il tempo
+            player.updateAnimation(correction);
         }
 
         function spawnObstacle() {
@@ -1417,24 +1485,51 @@
             });
         }
 
-        function updateObstacles() {
-            obstacleTimer++;
-            if (obstacleTimer > obstacleInterval) {
-                spawnObstacle();
-                obstacleTimer = 0;
-                const baseInterval = Math.max(50, 150 - Math.floor(score / 150));
-                const randomness = baseInterval * 0.3;
-                obstacleInterval = baseInterval + (Math.random() * randomness * 2 - randomness);
-            }
-            for (let i = obstacles.length - 1; i >= 0; i--) {
-                obstacles[i].x -= gameSpeed;
-                if (obstacles[i].x + obstacles[i].width < 0) {
-                    obstacles.splice(i, 1);
-                    score += 10;
-                }
-            }
-            if (score % 100 === 0 && score > 0) gameSpeed += 0.1;
+        function updateObstacles(correction) {
+    obstacleTimer += correction; 
+    
+    if (obstacleTimer > obstacleInterval) {
+        spawnObstacle();
+        obstacleTimer = 0;
+
+        // --- ZONA MODIFICHE ---
+        
+        // NUMERO 1 (Minimo): Era 50. Mettilo a 30 o 40.
+        // È la distanza minima assoluta tra due ostacoli quando il gioco è velocissimo.
+        // Se è troppo basso (es. 20), il gioco diventa impossibile.
+        const minGap = 45; 
+
+        // NUMERO 2 (Partenza): Era 150. Mettilo a 100 o 120.
+        // È la distanza tra ostacoli all'inizio della partita.
+        // Più è basso, più ostacoli ci sono fin da subito.
+        const startGap = 70; 
+
+        // NUMERO 3 (Difficoltà): Era 150. Mettilo a 100 o 80.
+        // Indica ogni quanto il gioco diventa più difficile.
+        // Più è basso, più velocemente gli ostacoli si avvicinano tra loro.
+        const difficultyCurve = 150;
+
+        // Calcolo finale dell'intervallo
+        const baseInterval = Math.max(minGap, startGap - Math.floor(score / difficultyCurve));
+        
+        // --- FINE ZONA MODIFICHE ---
+
+        const randomness = baseInterval * 0.3;
+        obstacleInterval = baseInterval + (Math.random() * randomness * 2 - randomness);
+    }
+    
+    // ... resto della funzione (movimento ostacoli) uguale a prima ...
+    for (let i = obstacles.length - 1; i >= 0; i--) {
+        obstacles[i].x -= gameSpeed * correction;
+        if (obstacles[i].x + obstacles[i].width < 0) {
+            obstacles.splice(i, 1);
+            score += 10 * correction; // Ricorda di scalare anche i punti se vuoi
         }
+    }
+    
+    // Aumento velocità gioco
+    if (score > 0 && Math.floor(score) % 100 === 0) gameSpeed += 0.4 * correction; 
+}
 
         function checkCollisions() {
             const playerHitbox = {
@@ -1477,7 +1572,7 @@
             if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
 
             if (score > highScore) {
-                highScore = score;
+                highScore = Math.floor(score);
                 localStorage.setItem('magiHighScore', highScore);
                 document.getElementById('highScoreValue').textContent = highScore;
             }
@@ -1486,7 +1581,7 @@
                 showNativityEnding();
             } else {
                 const goalMessage = document.getElementById('goalMessage');
-                goalMessage.textContent = `Mancavano ${GOAL_SCORE - score} passi per il Presepio`;
+                goalMessage.textContent = `Mancavano ${GOAL_SCORE - Math.floor(score)} passi per il Presepio`;
                 goalMessage.style.color = '#ff8a8a';
 
                 if (score > highScore) {
@@ -1495,7 +1590,7 @@
                     document.getElementById('newRecord').style.display = 'none';
                 }
 
-                document.getElementById('finalScore').textContent = score;
+                document.getElementById('finalScore').textContent = Math.floor(score);;
                 document.getElementById('gameOver').style.display = 'block';
             }
         }
@@ -1529,15 +1624,22 @@
             }
         }
 
-        function update() {
+        function update(correction) {
             if (gameRunning) {
-                updatePlayer();
-                updateObstacles();
+                // Passiamo correction a player e ostacoli
+                updatePlayer(correction);
+                updateObstacles(correction);
+
                 checkCollisions();
                 checkGoal();
-                score++;
-                document.getElementById('score').textContent = score;
-                const remaining = Math.max(0, GOAL_SCORE - score);
+
+                // Anche il punteggio deve salire in base al tempo, non ai frame
+                score += 2 * correction;
+
+                // Usiamo Math.floor per visualizzare un numero intero
+                document.getElementById('score').textContent = Math.floor(score);
+
+                const remaining = Math.max(0, GOAL_SCORE - Math.floor(score));
                 document.getElementById('goalProgress').textContent = remaining > 0 ? `Meta: ${remaining} passi` : '✨ META RAGGIUNTA! ✨';
             }
         }
@@ -1555,8 +1657,23 @@
             player.draw();
         }
 
-        function gameLoop() {
-            update();
+        let lastTime = 0;
+
+        function gameLoop(timestamp) {
+            // Gestione del primo frame
+            if (!lastTime) lastTime = timestamp;
+
+            // Calcola il tempo passato dall'ultimo frame (in ms)
+            const deltaTime = timestamp - lastTime;
+            lastTime = timestamp;
+
+            // Calcola il fattore di correzione basato su 60 FPS (16.67ms)
+            // Se il gioco va a 30FPS, correction sarà 2 (muovi il doppio per compensare)
+            // Se il gioco va a 60FPS, correction sarà 1
+            // Limitiamo il delta a 100ms per evitare salti enormi se il browser si blocca
+            const correction = Math.min(deltaTime, 100) / (1000 / 60);
+
+            update(correction); // Passiamo la correzione alla funzione update
             draw();
             requestAnimationFrame(gameLoop);
         }
