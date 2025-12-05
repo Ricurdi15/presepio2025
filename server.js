@@ -10,14 +10,14 @@ const PORT = process.env.PORT || 3000; // Usa la PORTA fornita da Railway
 // const SCORES_FILE = ... <-- Rimosso
 
 // 1. Connessione al Database (MongoDB)
-const MONGO_URI = process.env.MONGO_URI; // Variabile d'ambiente fornita da Railway/Atlas
+const MONGO_URL = process.env.MONGO_URL; // Variabile d'ambiente fornita da Railway/Atlas
 
-if (!MONGO_URI) {
-    console.error("ERRORE: Variabile d'ambiente MONGO_URI non trovata.");
+if (!MONGO_URL) {
+    console.error("ERRORE: Variabile d'ambiente MONGO_URL non trovata.");
     process.exit(1);
 }
 
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URL)
     .then(() => console.log('✅ Connesso al database MongoDB'))
     .catch(err => {
         console.error('❌ Errore di connessione al DB:', err);
