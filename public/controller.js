@@ -413,7 +413,14 @@
 
         function checkOrientation() {
             const rotateMsg = document.getElementById('rotateMessage');
-            if (isMobile && window.innerWidth < 768 && window.innerHeight > window.innerWidth) {
+            const isPortrait = window.innerHeight > window.innerWidth;
+            const isSmallScreen = window.innerWidth < 768;
+            
+            // Mostra il messaggio di rotazione solo se:
+            // 1. Il gioco è iniziato
+            // 2. Siamo su uno schermo piccolo (mobile)
+            // 3. Siamo in portrait
+            if (gameStarted && isSmallScreen && isPortrait) {
                 rotateMsg.classList.add('show', 'mobile-portrait');
             } else {
                 rotateMsg.classList.remove('show', 'mobile-portrait');
@@ -491,7 +498,12 @@
             document.getElementById('startScreen').classList.add('hidden');
             await spriteLoader.load(SPRITE_CONFIG);
             if (isMobile) await enterFullscreen();
-            setTimeout(() => { gameStarted = true; startGame(); }, 300);
+            setTimeout(() => { gameStarted = true; startGame(); checkOrientation(); }, 300);
+        });
+
+        // Pulsante per saltare la schermata di rotazione
+        document.getElementById('skipRotateBtn').addEventListener('click', () => {
+            document.getElementById('rotateMessage').classList.remove('show', 'mobile-portrait');
         });
 
         // PULSANTE ESCI - Torna al menu principale
@@ -1049,6 +1061,11 @@
 
         window.addEventListener('resize', () => { resizeCanvas(); checkOrientation(); });
         window.addEventListener('orientationchange', () => setTimeout(() => { resizeCanvas(); checkOrientation(); }, 100));
+        
+        // Per iOS - listener aggiuntivo
+        window.matchMedia("(orientation: portrait)").addEventListener("change", () => {
+            setTimeout(() => { resizeCanvas(); checkOrientation(); }, 100);
+        });
 
         resizeCanvas();
         checkOrientation();

@@ -486,6 +486,29 @@
             margin-bottom: 10px;
         }
 
+        #rotateMessage p {
+            margin-bottom: 20px;
+        }
+
+        .skip-rotate-btn {
+            padding: 12px 30px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            background: transparent;
+            color: var(--cream);
+            border: 2px solid var(--gold);
+            border-radius: 25px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .skip-rotate-btn:hover {
+            opacity: 1;
+            background: rgba(212, 175, 55, 0.2);
+        }
+
         @keyframes rotate {
 
             0%,
