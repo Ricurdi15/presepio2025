@@ -414,7 +414,7 @@
         function checkOrientation() {
             const rotateMsg = document.getElementById('rotateMessage');
             const isPortrait = window.innerHeight > window.innerWidth;
-            const isSmallScreen = window.innerWidth < 768;
+            const isSmallScreen = window.innerWidth < 768 || window.innerHeight < 768;
             
             // Mostra il messaggio di rotazione solo se:
             // 1. Il gioco è iniziato
@@ -426,6 +426,9 @@
                 rotateMsg.classList.remove('show', 'mobile-portrait');
             }
         }
+        
+        // Controllo continuo per Safari iOS che a volte non triggera gli eventi
+        setInterval(checkOrientation, 500);
 
         function createRipple(x, y) {
             const ripple = document.createElement('div');
