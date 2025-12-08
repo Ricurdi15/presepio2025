@@ -706,6 +706,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+canvas.addEventListener('mousedown', handleInput);
 canvas.addEventListener('touchstart', handleInput, { passive: false });
 canvas.addEventListener('click', handleInput);
 
