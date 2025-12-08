@@ -500,11 +500,30 @@
         });
 
         document.getElementById('leaderboardBtn').addEventListener('click', () => {
+            document.getElementById('leaderboardOverlay').classList.add('show');
+            document.getElementById('leaderboardModal').style.display = 'block';
+            loadLeaderboard();
+        });
+
+        document.getElementById('startLeaderboardBtn').addEventListener('click', () => {
+            document.getElementById('leaderboardOverlay').classList.add('show');
+            document.getElementById('leaderboardModal').style.display = 'block';
+            loadLeaderboard();
+        });
+
+        document.getElementById('nativityLeaderboardBtn').addEventListener('click', () => {
+            document.getElementById('leaderboardOverlay').classList.add('show');
             document.getElementById('leaderboardModal').style.display = 'block';
             loadLeaderboard();
         });
 
         document.getElementById('closeLeaderboard').addEventListener('click', () => {
+            document.getElementById('leaderboardOverlay').classList.remove('show');
+            document.getElementById('leaderboardModal').style.display = 'none';
+        });
+
+        document.getElementById('leaderboardOverlay').addEventListener('click', () => {
+            document.getElementById('leaderboardOverlay').classList.remove('show');
             document.getElementById('leaderboardModal').style.display = 'none';
         });
 

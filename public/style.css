@@ -429,6 +429,31 @@
             transform: scale(0.97);
         }
 
+        .leaderboard-btn-secondary {
+            padding: 12px 30px;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 600;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.9) 0%, rgba(18, 29, 51, 0.95) 100%);
+            color: var(--gold-light);
+            border: 2px solid var(--gold);
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: var(--glow-gold), var(--shadow-soft);
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .leaderboard-btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .leaderboard-btn-secondary:active {
+            transform: scale(0.97);
+        }
+
         /* ===== ROTATE MESSAGE ===== */
         #rotateMessage {
             position: fixed;
@@ -1408,6 +1433,21 @@
         }
 
         /* ===== LEADERBOARD MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 99998;
+            display: none;
+        }
+
+        .modal-overlay.show {
+            display: block;
+        }
+
         #leaderboardModal {
             position: fixed;
             top: 50%;
@@ -1418,7 +1458,7 @@
             border-radius: 24px;
             border: 4px solid var(--gold);
             display: none;
-            z-index: 2000;
+            z-index: 99999;
             max-width: 90%;
             width: 420px;
             max-height: 80vh;
