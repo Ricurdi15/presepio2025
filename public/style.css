@@ -225,8 +225,8 @@
         }
 
         .star-decoration {
-            font-size: 60px;
-            margin-bottom: 10px;
+            font-size: 40px;
+            margin-bottom: 5px;
             animation: twinkle 2s ease-in-out infinite alternate;
             filter: drop-shadow(0 0 20px rgba(244, 208, 63, 0.8));
         }
@@ -245,9 +245,9 @@
 
         .logo-image {
             max-width: 80%;
-            width: clamp(250px, 50vw, 500px);
+            width: clamp(180px, 40vw, 350px);
             height: auto;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.5));
         }
 
@@ -276,17 +276,17 @@
         }
 
         #startScreen .mission {
-            font-size: clamp(14px, 2.5vw, 18px);
-            margin: 20px 0;
-            padding: 25px 35px;
+            font-size: clamp(12px, 2vw, 15px);
+            margin: 0;
+            padding: 15px 20px;
             background: linear-gradient(135deg, rgba(22, 91, 51, 0.4) 0%, rgba(13, 56, 32, 0.6) 100%);
             border: 2px solid var(--gold);
-            border-radius: 20px;
+            border-radius: 16px;
             color: var(--warm-white);
-            max-width: 450px;
+            max-width: 350px;
             box-shadow: var(--glow-gold), var(--shadow-soft);
             backdrop-filter: blur(10px);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         #startScreen .mission strong {
@@ -294,10 +294,103 @@
             font-weight: 600;
         }
 
+        .start-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        @media (min-width: 768px) {
+            .start-content {
+                flex-direction: row;
+                justify-content: center;
+                align-items: stretch;
+                gap: 20px;
+            }
+
+            #startScreen .mission {
+                margin: 0;
+                flex: 1;
+                max-width: 300px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .controls-info {
+                margin: 0;
+                flex: 1;
+                max-width: 300px;
+                flex-direction: column;
+                gap: 8px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .control-separator {
+                display: none;
+            }
+        }
+
+        .controls-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 6px 15px;
+            margin: 0;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(65, 105, 225, 0.2) 0%, rgba(0, 0, 128, 0.3) 100%);
+            border-radius: 16px;
+            border: 2px solid var(--gold);
+            max-width: 350px;
+            box-shadow: var(--glow-gold), var(--shadow-soft);
+            backdrop-filter: blur(10px);
+        }
+
+        .controls-info-title {
+            font-size: clamp(12px, 2vw, 15px);
+            color: var(--gold-light);
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        .control-item {
+            font-size: clamp(11px, 1.8vw, 13px);
+            color: var(--cream);
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .control-item strong {
+            color: var(--gold-light);
+        }
+
+        .control-separator {
+            color: var(--gold);
+            opacity: 0.5;
+        }
+
+        @media (max-width: 767px) {
+            .controls-info {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .control-separator {
+                display: none;
+            }
+        }
+
         #startButton {
-            padding: 20px 60px;
+            padding: 15px 50px;
             font-family: 'Cinzel', serif;
-            font-size: clamp(18px, 3vw, 24px);
+            font-size: clamp(16px, 2.5vw, 20px);
             font-weight: 600;
             background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
             color: white;
@@ -305,7 +398,7 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: var(--glow-crimson), var(--shadow-hard);
-            margin: 25px 0;
+            margin: 15px 0;
             letter-spacing: 2px;
             transition: all 0.3s ease;
             position: relative;
@@ -513,7 +606,7 @@
             justify-content: center;
             align-items: center;
             z-index: 10001;
-            padding: 30px;
+            padding: 15px;
             overflow-y: auto;
         }
 
@@ -536,7 +629,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             max-width: 700px;
             width: 100%;
         }
@@ -560,19 +653,19 @@
 
         .nativity-header h2 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(28px, 5vw, 48px);
+            font-size: clamp(20px, 4vw, 36px);
             font-weight: 700;
             background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 8px;
-            letter-spacing: 3px;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
         }
 
         .nativity-header p {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(16px, 2.5vw, 22px);
+            font-size: clamp(14px, 2vw, 18px);
             color: var(--cream);
             font-style: italic;
             opacity: 0.9;
@@ -581,6 +674,195 @@
         .nativity-image-wrapper {
             position: relative;
             animation: zoomIn 1s ease-out 0.4s both;
+        }
+
+        .share-cta {
+            position: absolute;
+            bottom: 12px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .share-cta-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            font-style: italic;
+            color: var(--cream);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.7) 0%, rgba(18, 29, 51, 0.8) 100%);
+            padding: 6px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            animation: gentlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        .share-button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.9) 0%, rgba(18, 29, 51, 0.95) 100%);
+            color: var(--gold-light);
+            border: 2px solid var(--gold);
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--glow-gold);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .share-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .share-button:active {
+            transform: scale(0.95);
+        }
+
+        .share-icon {
+            font-size: 18px;
+        }
+
+        .share-text {
+            display: inline;
+        }
+
+        @media (max-width: 500px) {
+            .share-cta {
+                bottom: 8px;
+                gap: 5px;
+            }
+
+            .share-cta-text {
+                font-size: 12px;
+                padding: 5px 12px;
+            }
+
+            .share-button {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            .share-icon {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 900px) and (orientation: landscape) {
+            .share-cta-text {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+
+            .share-button {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+        }
+
+        /* Share Modal Fallback */
+        .share-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 20000;
+            backdrop-filter: blur(5px);
+        }
+
+        .share-modal.show {
+            display: flex;
+        }
+
+        .share-modal-content {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+            padding: 25px;
+            border-radius: 20px;
+            border: 3px solid var(--gold);
+            text-align: center;
+            max-width: 90%;
+            width: 350px;
+            box-shadow: var(--glow-gold), 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .share-modal-content h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--crimson-dark);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .share-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .share-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 15px;
+            background: white;
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--midnight);
+            min-width: 70px;
+        }
+
+        .share-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-option .icon {
+            font-size: 28px;
+        }
+
+        .share-option .label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .share-close {
+            padding: 10px 30px;
+            background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
+            color: white;
+            border: 2px solid var(--gold);
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .share-close:hover {
+            transform: scale(1.05);
         }
 
         @keyframes zoomIn {
@@ -597,25 +879,25 @@
 
         #nativityEnding img {
             width: 100%;
-            max-width: 1080px;
+            max-width: 900px;
             height: auto;
-            max-height: 55vh;
+            max-height: 45vh;
             object-fit: contain;
-            border: 5px solid var(--gold);
-            border-radius: 20px;
+            border: 4px solid var(--gold);
+            border-radius: 16px;
             box-shadow:
-                0 0 60px rgba(212, 175, 55, 0.4),
-                0 20px 60px rgba(0, 0, 0, 0.5);
+                0 0 40px rgba(212, 175, 55, 0.4),
+                0 15px 40px rgba(0, 0, 0, 0.5);
         }
 
         .image-glow {
             position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
             background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
-            border-radius: 30px;
+            border-radius: 25px;
             z-index: -1;
             animation: pulse 3s ease-in-out infinite;
         }
@@ -639,7 +921,7 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             width: 100%;
             animation: slideUp 0.8s ease-out 0.6s both;
         }
@@ -658,9 +940,9 @@
 
         .score-display {
             background: linear-gradient(135deg, rgba(22, 91, 51, 0.5) 0%, rgba(13, 56, 32, 0.7) 100%);
-            padding: 20px 40px;
-            border-radius: 16px;
-            border: 3px solid var(--gold);
+            padding: 12px 25px;
+            border-radius: 12px;
+            border: 2px solid var(--gold);
             text-align: center;
             box-shadow: var(--glow-gold), var(--shadow-soft);
             backdrop-filter: blur(10px);
@@ -668,15 +950,15 @@
 
         .score-display .label {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 16px;
+            font-size: 13px;
             color: var(--cream);
             opacity: 0.9;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .score-display .value {
             font-family: 'Cinzel', serif;
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: clamp(24px, 4vw, 36px);
             font-weight: 700;
             color: var(--gold-light);
         }
@@ -684,17 +966,17 @@
         .save-section {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            min-width: 280px;
+            gap: 8px;
+            min-width: 200px;
         }
 
         #nativityNameInput {
-            padding: 14px 20px;
+            padding: 10px 15px;
             font-family: 'Quicksand', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
-            border: 3px solid var(--gold);
-            border-radius: 12px;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
             color: var(--midnight);
@@ -703,7 +985,7 @@
 
         #nativityNameInput:focus {
             outline: none;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
 
         #nativityNameInput::placeholder {
@@ -712,13 +994,13 @@
 
         #nativitySubmitBtn {
             background: linear-gradient(135deg, var(--forest) 0%, var(--forest-dark) 100%);
-            border: 3px solid var(--gold);
-            padding: 14px 30px;
+            border: 2px solid var(--gold);
+            padding: 10px 20px;
             font-family: 'Cinzel', serif;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 600;
             color: white;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
             letter-spacing: 1px;
             transition: all 0.3s ease;
@@ -727,7 +1009,7 @@
 
         #nativitySubmitBtn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(22, 91, 51, 0.5);
+            box-shadow: 0 0 25px rgba(22, 91, 51, 0.5);
         }
 
         #nativitySubmitBtn:active {
@@ -741,93 +1023,118 @@
         }
 
         #nativityRestartBtn {
-            padding: 16px 50px;
+            padding: 12px 35px;
             font-family: 'Cinzel', serif;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 600;
             background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-dark) 100%);
             color: white;
-            border: 3px solid var(--gold);
+            border: 2px solid var(--gold);
             border-radius: 50px;
             cursor: pointer;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             box-shadow: var(--glow-crimson), var(--shadow-hard);
             transition: all 0.3s ease;
         }
 
         #nativityRestartBtn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 40px rgba(196, 30, 58, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(196, 30, 58, 0.5);
         }
 
         #nativityRestartBtn:active {
             transform: scale(0.97);
         }
 
-        /* Desktop - larger image and horizontal layout */
+        /* Desktop - layout orizzontale */
         @media (min-width: 900px) {
+            .nativity-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                max-width: 95vw;
+                gap: 15px;
+            }
+
+            .nativity-header {
+                width: 100%;
+            }
+
+            .nativity-image-wrapper {
+                flex: 1 1 55%;
+                max-width: 600px;
+            }
+
             #nativityEnding img {
-                max-height: 60vh;
+                max-height: 55vh;
             }
 
             .nativity-content {
-                gap: 30px;
+                flex: 1 1 35%;
+                flex-direction: column;
+                gap: 12px;
+                max-width: 280px;
             }
 
             .score-display {
-                padding: 25px 50px;
+                padding: 15px 30px;
             }
         }
 
         /* Large desktop */
         @media (min-width: 1200px) {
             #nativityEnding img {
-                max-height: 65vh;
+                max-height: 60vh;
+            }
+
+            .nativity-image-wrapper {
+                max-width: 700px;
             }
         }
 
         /* Mobile Portrait */
         @media (max-width: 768px) and (orientation: portrait) {
             #nativityEnding {
-                padding: 15px;
+                padding: 10px;
             }
 
             .nativity-container {
-                gap: 15px;
+                gap: 8px;
             }
 
             #nativityEnding img {
-                max-height: 40vh;
-                border-width: 3px;
-                border-radius: 12px;
+                max-height: 35vh;
+                border-width: 2px;
+                border-radius: 10px;
             }
 
             .score-display {
-                padding: 15px 30px;
+                padding: 10px 20px;
             }
 
             .save-section {
                 min-width: 100%;
-                max-width: 350px;
+                max-width: 300px;
             }
 
             #nativityRestartBtn {
-                padding: 14px 40px;
-                font-size: 16px;
+                padding: 10px 30px;
+                font-size: 14px;
             }
         }
 
         /* Mobile Landscape */
         @media (max-width: 900px) and (orientation: landscape) {
             #nativityEnding {
-                padding: 10px 20px;
+                padding: 8px 15px;
             }
 
             .nativity-container {
                 flex-direction: row;
                 flex-wrap: wrap;
                 align-items: center;
-                gap: 15px;
+                gap: 10px;
             }
 
             .nativity-header {
@@ -836,35 +1143,35 @@
             }
 
             .nativity-header h2 {
-                font-size: 24px;
+                font-size: 18px;
             }
 
             .nativity-header p {
-                font-size: 14px;
+                font-size: 12px;
             }
 
             .nativity-image-wrapper {
                 flex: 1;
-                min-width: 50%;
+                min-width: 45%;
             }
 
             #nativityEnding img {
-                max-height: 70vh;
-                border-width: 3px;
+                max-height: 60vh;
+                border-width: 2px;
             }
 
             .nativity-content {
-                flex: 0 0 40%;
+                flex: 0 0 45%;
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
             }
 
             .score-display {
-                padding: 12px 25px;
+                padding: 8px 18px;
             }
 
             .score-display .value {
-                font-size: 28px;
+                font-size: 22px;
             }
 
             .save-section {
@@ -874,13 +1181,13 @@
 
             #nativityNameInput,
             #nativitySubmitBtn {
-                padding: 10px 20px;
-                font-size: 14px;
+                padding: 8px 15px;
+                font-size: 12px;
             }
 
             #nativityRestartBtn {
-                padding: 12px 30px;
-                font-size: 14px;
+                padding: 8px 25px;
+                font-size: 12px;
             }
         }
 

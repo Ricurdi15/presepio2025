@@ -30,10 +30,17 @@
         <div class="star-decoration">⭐</div>
         <img src="img/logo.png" alt="Presepio 2020 II" class="logo-image">
         <p class="subtitle">Un'avventura verso la Natività</p>
-        <div class="mission">
-            🎄 <strong>LA TUA MISSIONE</strong> 🎄<br><br>
-            Raggiungi <strong>6500 passi</strong><br>
-            per arrivare al Presepio!
+        <div class="start-content">
+            <div class="mission">
+                🎄 <strong>LA TUA MISSIONE</strong> 🎄<br><br>
+                Raggiungi <strong>6500 passi</strong><br>
+                per arrivare al Presepio!
+            </div>
+            <div class="controls-info">
+                <div class="controls-info-title">🎮 COMANDI</div>
+                <span class="control-item">💻 <strong>PC:</strong> Premi SPAZIO per saltare</span>
+                <span class="control-item">📱 <strong>Mobile:</strong> Tocca lo schermo per saltare</span>
+            </div>
         </div>
         <button id="startButton">✨ INIZIA IL VIAGGIO ✨</button>
     </div>
@@ -70,7 +77,14 @@
 
             <div class="nativity-image-wrapper">
                 <div class="image-glow"></div>
-                <img src="img/presepio.png" alt="Presepio">
+                <img src="img/presepio.png" alt="Presepio" id="presepioImg">
+                <div class="share-cta">
+                    <span class="share-cta-text">✨ Condividi il Presepio! ✨</span>
+                    <button id="shareBtn" class="share-button" title="Condividi">
+                        <span class="share-icon">📤</span>
+                        <span class="share-text">Condividi</span>
+                    </button>
+                </div>
             </div>
 
             <div class="nativity-content">
@@ -104,6 +118,36 @@
         </div>
 
         <button id="restartBtn" class="btn">🔄 RIPROVA VIAGGIO</button>
+    </div>
+
+    <!-- Share Modal (Fallback for desktop) -->
+    <div id="shareModal" class="share-modal">
+        <div class="share-modal-content">
+            <h3>📤 Condividi il Presepio</h3>
+            <div class="share-options">
+                <a href="#" id="shareFacebook" class="share-option" target="_blank">
+                    <span class="icon">📘</span>
+                    <span class="label">Facebook</span>
+                </a>
+                <a href="#" id="shareTwitter" class="share-option" target="_blank">
+                    <span class="icon">🐦</span>
+                    <span class="label">Twitter</span>
+                </a>
+                <a href="#" id="shareWhatsapp" class="share-option" target="_blank">
+                    <span class="icon">💬</span>
+                    <span class="label">WhatsApp</span>
+                </a>
+                <button id="shareCopy" class="share-option">
+                    <span class="icon">📋</span>
+                    <span class="label">Copia Link</span>
+                </button>
+                <button id="shareDownload" class="share-option">
+                    <span class="icon">💾</span>
+                    <span class="label">Salva Foto</span>
+                </button>
+            </div>
+            <button id="shareCloseBtn" class="share-close">Chiudi</button>
+        </div>
     </div>
 
     <!-- Leaderboard Modal -->
