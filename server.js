@@ -46,7 +46,7 @@ app.get('/api/scores', async (req, res) => {
     try {
         const topScores = await Score.find()
             .sort({ score: -1 })
-            .limit(10)
+            .limit(50)
             .select('name score date -_id');
         
         res.json(topScores);
@@ -73,7 +73,7 @@ app.post('/api/scores', async (req, res) => {
 
         const topScores = await Score.find()
             .sort({ score: -1 })
-            .limit(10)
+            .limit(50)
             .select('name score date -_id');
         
         res.json({ 
