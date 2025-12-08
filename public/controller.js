@@ -93,7 +93,7 @@
             background: { sprite: 'img/background.png', useColor: false, color: '#21243bff' }
         };
 
-        const GOAL_SCORE = 6500;
+        const GOAL_SCORE = 5500;
         const API_URL = window.location.origin + '/api';
 
         const spriteLoader = {
