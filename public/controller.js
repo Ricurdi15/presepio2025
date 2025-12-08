@@ -471,7 +471,7 @@
                 const response = await fetch(`${API_URL}/scores`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, score })
+                    body: JSON.stringify({ name, score: Math.floor(score) })
                 });
                 const data = await response.json();
                 if (data.success) {
@@ -548,7 +548,7 @@
                 const response = await fetch(`${API_URL}/scores`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, score })
+                    body: JSON.stringify({ name, score: Math.floor(score) })
                 });
                 const data = await response.json();
                 if (data.success) {
