@@ -450,11 +450,16 @@ function createRipple(x, y) {
     setTimeout(() => document.body.removeChild(ripple), 600);
 }
 
+let allScores = [];
+let currentPage = 0;
+const SCORES_PER_PAGE = 25;
+
 async function loadLeaderboard() {
     try {
         const response = await fetch(`${API_URL}/scores`);
-        const scores = await response.json();
-        displayLeaderboard(scores);
+        allScores = await response.json();
+        currentPage = 0;
+        displayLeaderboard(allScores);
     } catch (error) {
         document.getElementById('loading').textContent = 'Impossibile caricare la classifica';
     }
@@ -465,20 +470,81 @@ function displayLeaderboard(scores) {
     const loading = document.getElementById('loading');
     loading.style.display = 'none';
     list.innerHTML = '';
+    
     if (scores.length === 0) {
         list.innerHTML = '<li style="text-align: center; padding: 20px; color: #666; font-style: italic;">Nessun punteggio ancora!</li>';
+        removePaginationControls();
         return;
     }
-    scores.forEach((entry, index) => {
+    
+    const totalPages = Math.ceil(scores.length / SCORES_PER_PAGE);
+    const startIndex = currentPage * SCORES_PER_PAGE;
+    const endIndex = Math.min(startIndex + SCORES_PER_PAGE, scores.length);
+    const pageScores = scores.slice(startIndex, endIndex);
+    
+    pageScores.forEach((entry, index) => {
+        const actualIndex = startIndex + index;
         const li = document.createElement('li');
         li.className = 'leaderboard-item';
-        if (index === 0) li.classList.add('top1');
-        else if (index === 1) li.classList.add('top2');
-        else if (index === 2) li.classList.add('top3');
-        const rank = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`;
+        if (actualIndex === 0) li.classList.add('top1');
+        else if (actualIndex === 1) li.classList.add('top2');
+        else if (actualIndex === 2) li.classList.add('top3');
+        const rank = actualIndex === 0 ? '🥇' : actualIndex === 1 ? '🥈' : actualIndex === 2 ? '🥉' : `${actualIndex + 1}.`;
         li.innerHTML = `<span class="rank">${rank}</span><span class="player-name">${entry.name}</span><span class="player-score">${entry.score}</span>`;
         list.appendChild(li);
     });
+    
+    // Add pagination controls
+    if (totalPages > 1) {
+        addPaginationControls(totalPages);
+    } else {
+        removePaginationControls();
+    }
+}
+
+function addPaginationControls(totalPages) {
+    removePaginationControls();
+    
+    const paginationDiv = document.createElement('div');
+    paginationDiv.id = 'paginationControls';
+    paginationDiv.className = 'pagination-controls';
+    
+    const prevBtn = document.createElement('button');
+    prevBtn.textContent = '◀ Prec';
+    prevBtn.className = 'pagination-btn';
+    prevBtn.disabled = currentPage === 0;
+    prevBtn.onclick = () => {
+        if (currentPage > 0) {
+            currentPage--;
+            displayLeaderboard(allScores);
+        }
+    };
+    
+    const pageInfo = document.createElement('span');
+    pageInfo.className = 'pagination-info';
+    pageInfo.textContent = `${currentPage + 1} / ${totalPages}`;
+    
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = 'Succ ▶';
+    nextBtn.className = 'pagination-btn';
+    nextBtn.disabled = currentPage >= totalPages - 1;
+    nextBtn.onclick = () => {
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            displayLeaderboard(allScores);
+        }
+    };
+    
+    paginationDiv.appendChild(prevBtn);
+    paginationDiv.appendChild(pageInfo);
+    paginationDiv.appendChild(nextBtn);
+    
+    document.getElementById('leaderboardList').after(paginationDiv);
+}
+
+function removePaginationControls() {
+    const existing = document.getElementById('paginationControls');
+    if (existing) existing.remove();
 }
 
 async function submitScore() {
